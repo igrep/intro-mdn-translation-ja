@@ -33,8 +33,10 @@
 
 ## お手軽ルート
 
-// *NOTE*:
-// 撮影の際は撮り直しがしやすいよう、実際のリポジトリーをフォークして、リポジトリーのページをDev Toolsで書き換えて本物に見せかけた状態で撮影します。
+<!--
+*NOTE*:
+撮影の際は撮り直しがしやすいよう、実際のリポジトリーをフォークして、リポジトリーのページをDev Toolsで書き換えて本物に見せかけた状態で撮影します。
+-->
 
 ### 1. 修正する記事を選ぶ
 
@@ -65,7 +67,7 @@
 
 修正する記事を選んだら、GitHub に Issue を作成して、作業に取り組むことを宣言しましょう。
 
-先ほども軽く触れたのですが、MDN の翻訳コミュニティでは、日本語の翻訳に関する Issue をやりとりする専用のリポジトリーを用意しています:
+先ほども軽く触れたのですが、MDN の翻訳コミュニティでは、日本語の翻訳に関する Issue をやりとりする専用のリポジトリーを用意しています。
 
 - <https://github.com/mozilla-japan/translation/>
 
@@ -75,7 +77,7 @@
 
 ### 3. 実際に翻訳して、Pull requestを送る
 
-Issue の報告ができたら、いよいよ作業開始です。mozilla-japan/translation のリポジトリーはあくまでも Issue を報告する専用のリポジトリーですので、こちらの mdn/translated-content というリポジトリーを開きます:
+Issue の報告ができたら、いよいよ作業開始です。mozilla-japan/translation のリポジトリーはあくまでも Issue を報告する専用のリポジトリーですので、こちらの mdn/translated-content というリポジトリーを開きます。
 
 - <https://github.com/mdn/translated-content>
 
@@ -148,13 +150,13 @@ Pull request をマージしてもらうと、最長48時間以内に加えた�
 
 まずは「お手軽ルート」と同様に、翻訳する記事を選びます。
 
-特に翻訳するページが決まっていない場合は、こちらからまだ翻訳されていないページを探すと良いでしょう。
+特に翻訳する記事が決まっていない場合は、こちらからまだ翻訳されていない記事を探すと良いでしょう。
 
 - <https://mdn.lavoscore.org/>
 
 <!-- どの記事を選ぶかは未定 -->
 
-今回は「hoge」という記事を翻訳します。
+今回は「hoge」という、まだ翻訳されていない記事を新たに翻訳します。
 
 ### 2. GitHub に Issue を作成する
 
@@ -162,13 +164,206 @@ Pull request をマージしてもらうと、最長48時間以内に加えた�
 
 - <https://github.com/mozilla-japan/translation/>
 
-先ほども紹介したこちらのリポジトリーに移動して、同じ Issue が報告されていないかチェックの上、Issue を報告して作業を宣言します。
+先ほども紹介した mozilla-japan/translation のリポジトリーに移動して、同じ Issue が報告されていないかチェックの上、Issue を報告して作業を宣言します。
 
 ### 3. 実際に翻訳して、Pull requestを送る
 
+### 3.1 リポジトリーのフォーク・クローン
+
+Issue の作成ができたら、作業開始です。Issue を報告したリポジトリーとは別の、 mdn/translated-content というリポジトリーを開き、フォークしましょう。
+
+- <https://github.com/mdn/translated-content>
+
+「お手軽ルート」の手順に従うと、自動的にフォークができているはずなので、実際のところこの手順は必要ないかも知れません。既にフォークできていればこの手順は不要です。
+
+リポジトリーのフォークが完了したら、フォークしてできた translated-content リポジトリーを `git clone` します。
+
+```bash
+> git clone https://github.com/<あなたの GitHub ID>/translated-content
+```
+
+`git clone` してできたディレクトリーに移動したら、まずはフォーク元のリポジトリー、mdn/translated-content をリモートリポジトリーとして登録しておきましょう。
+
+```bash
+> cd translated-content
+> git remote add upstream https://github.com/mdn/translated-content.git
+```
+
+ここではリモートリポジトリーの名前を `upstream` と付けていますが、もちろんお好きな名前で結構です。このようにリモートリポジトリーを設定しておけば、後で mdn/translated-content リポジトリーが更新された際、簡単に最新の状態から作業を始めることができます。詳細は次のステップで解説します。
+
+### 3.2 作業用ブランチの作成
+
+過去に他の Git リポジトリーで作業した経験があれば、ここですぐに `git branch` コマンドや `git switch` コマンドを実行して、作業用ブランチを作りたくなるかも知れません。しかし、作業用ブランチを確実に最新のバージョンから作るために、次のようにあらかじめ `git fetch` しておくのをお勧めします。
+
+```bash
+> git fetch upstream
+> git switch -c new-branch upstream/main
+```
+
+このように `git fetch upstream` と実行することによって、`upstream`、すなわちフォーク元である mdn/translated-content の最新の変更を取り込むことができます。その上で、新しいブランチの作成元として `upstream/main` を指定すれば、`git fetch` で更新した最新のバージョンからブランチを作ることができます。
+
+先ほどの例ではブランチの名前は `new-branch` としましたが、ブランチの名前に特に規約はないので好きな名前を付けてください。ここでは先ほど作った Issue の番号を含めて `issue-hoge` という名前にします。
+
+```bash
+> git fetch upstream
+> git switch -c issue-hoge upstream/main
+```
+
+### 3.3 翻訳元のファイルをコピーして、最初のコミットを作る
+
+今回は、「hoge」というまだ一度も日本語に翻訳されていない記事を翻訳するので、翻訳元である英語版の記事をコピーします。英語版の記事は mdn/content というリポジトリーにあるので、そちらも `git clone` します。
+
+```bash
+> git clone https://github.com/mdn/content
+```
+
+<!--
+NOTE:
+
+手順を簡略化するため、ひとまず mdn/content はフォークしないことにしました。
+mdn/content 自体を修正する場合を考えればフォークした方がよいかとは思いますが、今回はあくまで翻訳の手順なので！
+-->
+
+`git clone` できたら、作成されたディレクトリーから翻訳する記事が書かれた Markdown ファイルを、対応する日本語版のディレクトリーにコピーします。
+
+今回翻訳する `hoge` の記事の場合、 `mdn/content` リポジトリーの、こちらのディレクトリーにあります。
+
+<!--
+以下、仮に https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve を翻訳する場合のパスを用います。
+-->
+
+```
+files/en-us/web/javascript/reference/operators/import.meta/resolve/index.md
+```
+
+なので、ここまでで紹介したとおりにコマンドを実行していれば、次のコマンドでコピーできるはずです。
+
+```bash
+> mkdir -p files/ja/web/javascript/reference/operators/import.meta/resolve/
+> cp content/files/en-us/web/javascript/reference/operators/import.meta/resolve/index.md files/ja/web/javascript/reference/operators/import.meta/resolve/
+```
+
+コピー先のディレクトリー、files/ja/ 以下が日本語版を保存するディレクトリーです。英語版がある content/files/en-us/ 以下から、同じパスのディレクトリーを作っています。
+
+うまく行かない場合は後ほど紹介する Slack の Workspace で相談してみてください！
+
+英語版の記事をコピーできたら、早速日本語版の記事を開いて編集してみましょう... と言いたいところですがその前に、この時点でコピーした Markdown ファイルを `git add` してコミットしてください。
+
+```bash
+> git add files/ja/web/javascript/reference/operators/import.meta/resolve/
+> git commit -m"hoge の en-us 版を ja にコピー"
+```
+
+このように予め翻訳前のファイルをコミットしておくことで、後でレビューする際に原文との比較がしやすくなります。
+
+### 3.4 メタデータを編集して2番目のコミットを作る
+
+続いて、前の手順でコピーしたファイルのメタデータを編集します。お好きなエディターでコピーした hoge.md を開くと、先頭に次のような内容が書かれているでしょう。
+
+```markdown
+---
+title: import
+slug: Web/JavaScript/Reference/Statements/import
+page-type: javascript-statement
+browser-compat: javascript.statements.import
+---
+
+... 以下略 ...
+```
+
+※あくまで例です。ファイルによって項目は異ります。
+
+こちらがメタデータです。タイトル（`title`）や記事の種類（`page-type`）など、記事の内容以外のことがハイフン三つ `---` に囲われた `YAML` 形式で書かれています。
+
+日本語版の記事では、このメタデータを次のように編集してください。
+
+(1) `title` と `slug` 以外の項目は削除します。
+
+```markdown
+---
+title: import
+slug: Web/JavaScript/Reference/Statements/import
+---
+
+... 以下略 ...
+```
+
+(2) `l10n` という項目を追加して、その中に `sourceCommit` という項目を書きます。
+
+
+```markdown
+---
+title: import
+slug: Web/JavaScript/Reference/Statements/import
+l10n:
+  sourceCommit: 12345deadbeef
+---
+
+... 以下略 ...
+```
+
+`l10n`の最初の文字は小文字の l （エル）です。大文字の I と間違えないようご注意ください。`l10n` は localization の略なので覚えて奥手酔いでしょう。
+
+`sourceCommit` に書く値は、翻訳元のファイル、つまり英語版が書かれたファイルが最後に更新されたときのコミットのIDです。例えば次のようなコマンドを使うと、簡単に調べられます。
+
+```bash
+# 英語版のリポジトリーで実行します
+> cd content
+
+> git log -1 --format="format:%H"  files/en-us/web/javascript/reference/operators/import.meta/resolve/index.md
+270351317fdaa57ba9123a19aa281e9e40bb0baa
+```
+
+<!-- 実際に調べたコミットIDを sourceCommit に貼り付けるところまでスクリーンキャストで示す -->
+
+```markdown
+---
+title: import
+slug: Web/JavaScript/Reference/Statements/import
+l10n:
+  sourceCommit: 270351317fdaa57ba9123a19aa281e9e40bb0baa
+---
+
+... 以下略 ...
+```
+
+以上のように `sourceCommit` を記載しておくことで、どの時点の英語版を翻訳したのかが明確になります。翻訳元のファイルが今後更新された場合に、古くなっていることが分かりやすくするための配慮です。
+
+ここまでできたら、再び `git commit` しておきましょう。
+
+```bash
+> git add files/ja/web/javascript/reference/operators/import.meta/resolve/
+> git commit -m"hoge のメタデータを更新"
+```
+
+### 3.5 編集して段落ごとにコミットを作る
+
+いよいよ本文の翻訳です。後でレビュアーの方がレビューしやすいよう、段落など、短いまとまりを翻訳し終える度にコミットするのをお勧めします。そうすることによって、レビュアーが Pull request に含まれる各コミットを見るだけで、どの部分をどう翻訳したかを把握できます。
+
+<!-- 実演するスクリーンキャストも -->
+
+#### ⚠️注意事項
+
+なお、翻訳の際は次の点にご注意ください。
+
+- 翻訳ソフトや対話型 AI などを利用して翻訳する場合、翻訳した文章を MDN の記事として公開することが、サービスの利用規約に違反しないようご注意ください
+- 他の MDN の記事へのリンクは、日本語版のものに書き換えてください
+    - 大抵の場合先頭の `/en-us/` を `/ja/` に置き換えるだけで良いです
+    - 参照している翻訳記事が存在しない場合でも、英語版に自動でリダイレクトしてくれるので、参照先の有無は気にしなくて結構です
+- 日本語の表記について、細かく定めたルールがあるのでそれに従って記載してください
+    - 詳しくは、概要欄に記載した URL のページをご覧ください
+
+### 3.6 編集中の内容をプレビューする
+
 WIP
 
-### 4. レビューなどへの対応
+### 3.X Pull request を送る
+
+WIP
+
+```bash
+git push -u
+```
 
 これ以降については、「お手軽ルート」と変わらないので割愛します。Pull request を送って、レビュアーからの指摘に真摯に対応しましょう。
 
