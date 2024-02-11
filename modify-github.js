@@ -6,7 +6,7 @@
 // @updateURL    https://gist.githubusercontent.com/UnicodeError0041/b5a43f278027007cc3efb6623f68358b/raw/neptun-mark-my-professor-ratings.js
 // @description    Modify the repository page of GitHub for screencast
 // @author         igrep
-// @include        https://github.com/igrep/translated-content/*
+// @match        https://github.com/igrep/translated-content/*
 // @grant          none
 // ==/UserScript==
 
