@@ -13,6 +13,7 @@
 
 (() => {
   function exec() {
+    document.title = document.title.replace(/^igrep\//, "mdn/");
     const appHeaderContextItemLabel = document.querySelector(".AppHeader-context-item .AppHeader-context-item-label");
     if (appHeaderContextItemLabel !== null) {
       appHeaderContextItemLabel.innerText = "mdn";
