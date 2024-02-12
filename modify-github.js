@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name           Modify the repository page of GitHub for screencast
 // @namespace      http://tampermonkey.net/
-// @version        2024-02-11
+// @version        2024-02-12
 // @downloadURL    https://raw.githubusercontent.com/igrep/intro-mdn-translation-ja/main/modify-github.js
 // @updateURL      https://raw.githubusercontent.com/igrep/intro-mdn-translation-ja/main/modify-github.js
 // @description    Modify the repository page of GitHub for screencast
@@ -35,5 +35,5 @@
   }
   exec();
 
-  setInterval(exec, 500);
+  setInterval(exec, 200);
 })();
