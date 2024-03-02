@@ -1,41 +1,49 @@
 # MDN 翻訳の流れ
 
-
 ## あらまし
 
 こんにちは。この動画では、MDN に書かれている記事を日本語に翻訳する際の手順を紹介します。
 
-基本的にはよくある GitHub のリポジトリーに Pull request を送るなどして貢献するときのフローと変わりません。
+基本的にはよくある GitHub のリポジトリーに Pull request を送るなどして、貢献するときのフローと変わりません。
 
 ただし、 Issue を送るリポジトリーと、変更を加えて Pull request を送るリポジトリー、翻訳する原文があるリポジトリー、それぞれが分かれているのでご注意ください。
 
 ## 二つの大まかな流れ
 
-1. お手軽ルート
-    - GitHub 上のエディターを使うので、モダンなブラウザーさえ動作すれば参加できる
-    - 編集中にはプレビューできない
-    - 好きなエディターで編集できない
-    - => 誤字脱字の修正など、細かい修正の場合のみおすすめ
-1. 本格ルート
-    - Node.js などのインストールが必要
-    - 編集中にプレビューできる
-        - MDNのMarkdown固有の構文が正しく書けているかのチェックもしやすい
-    - 好きなエディターが使える
+MDN の翻訳には、大きく分けて二つの方法があります。
+
+1. 一つ目は、お手軽ルートです。
+    - 「お手軽ルート」では、GitHub 上のエディターで MDN のリポジトリーにあるファイルを直接編集するので、Chrome や Edge、Firefox など、モダンなブラウザーさえ動作すれば参加できます。簡単ですね。
+    - ただし、編集中に編集した内容が、MDN 上でどう表示されるのかプレビューすることができません
+    - 従って、誤字脱字の修正など、小さな修正の場合におすすめです。
+1. もう一つは、本格ルートです。
+    - こちらは、Node.js などのインストールが必要なので、少し敷居が高いです。
+    - 一方、編集した内容が、MDN 上でどう表示されるのか、編集しながらプレビューすることができます。
+        - MDN の Markdown には、通常の Markdown の構文に加え、固有の構文がいくつかあります。「本格ルート」なら、それらが正しく書けているかどうかのチェックも、簡単にできます。
+    - それから、こちらの方法だと好きなエディターが使えます。人によってはこれはとても重要でしょう。
+    - 以上をまとめて、「本格ルート」は、長い文章を0から翻訳する場合など、大きな修正を行う場合におすすめです。
 
 ## 用意するもの
 
-- お手軽ルート・本格ルート共通
-    - GitHub アカウント
-    - GitHub を利用できるウェブブラウザー
-    - [Japanese Mozilla community group の Slack](https://join.slack.com/t/mozillajp/shared_invite/enQtMjI2NDMwODUwNzY5LTIxZTg0YzJhMjFiYjc3NDIzNzQ3NTgyZmI1ZGQ2YWNhZmRlMzdlZWVlYTc3OGJiOGYzZTE2NThjYzFhMGMwYzQ) におけるアカウント
-        - 質問があったらこちらの #translation チャンネルでお願いします
-- 本格ルート
+実際に翻訳する手順を紹介する前に、翻訳の際必要な道具を挙げておきます。
+
+- お手軽ルート・本格ルート両方で必要になるものは次の通りです。どれも恐らく簡単に用意できるでしょう。
+    - GitHub のアカウントと、
+    - GitHub を利用できるウェブブラウザー、Chrome でも Edge でも Firefox でも Safari でも、なんでも好きなものをどうぞ。
+    - それから、翻訳していて困ったことを質問するために、 Japanese Mozilla community group の、 Slack におけるアカウントもご登録頂きますようお願いします。
+        - 概要欄に、招待リンクを記載しましたので、そちらをクリックしてご登録ください。
+- 続いて本格ルートでのみ必要になるものです。
     - Node.js
     - Yarn
     - Git
     - 好きなテキストエディター
+    - いずれも、なるべく新しいバージョンをインストールするのをお勧めします。もしうまくインストールできない場合は、先ほど紹介した Slack でご質問ください。
+
+- TODO: <https://join.slack.com/t/mozillajp/shared_invite/enQtMjI2NDMwODUwNzY5LTIxZTg0YzJhMjFiYjc3NDIzNzQ3NTgyZmI1ZGQ2YWNhZmRlMzdlZWVlYTc3OGJiOGYzZTE2NThjYzFhMGMwYzQ>
 
 ## お手軽ルート
+
+いよいよ、ここからは実際に翻訳する手順を、スクリーンキャスト付きで紹介します。まずは「お手軽ルート」です。
 
 <!--
 *NOTE*:
@@ -44,11 +52,19 @@
 
 ### 1. 修正する記事を選ぶ
 
-「お手軽ルート」では原則誤字脱字の修正など、軽微な修正を行う場合のみおすすめなので、そういう記事を探しましょう。[こちらのリポジトリーにある、日本語の翻訳に関する Issue の一覧](https://github.com/mozilla-japan/translation/issues)から探すのも良いでしょう。
+「お手軽ルート」では原則誤字脱字の修正など、軽微な修正を行う場合のみおすすめなので、そういう記事を探しましょう。[こちらのリポジトリーにある、日本語の翻訳に関する Issue の一覧][issues]から探すのも良いです。
 
-<!-- https://github.com/mdn/translated-content/tree/main/files/ja/glossary/accessibility/index.md の「web」を「ウェブ」にするのがよさそう？ -->
+[issues]: https://github.com/mozilla-japan/translation/issues
 
-ここでは例として「hoge」を修正します。表記の規約により、現在は「hoge」はアルファベットではなくカタカナで書くように定めているのですが、探してみた所準拠できてないケースが見つかったので、この機会に修正してみます。
+字幕で注意書き: 撮影時点でのGitHubの画面です。これ以降も含め、多かれ少なかれ現在のものと異なる可能性があります。
+
+<!-- 概要欄に [こちらのリポジトリーにある、日本語の翻訳に関する Issue の一覧](https://github.com/mozilla-japan/translation/issues) も書くこと！ -->
+
+<!-- https://developer.mozilla.org/ja/docs/Glossary/Accessibility https://github.com/mdn/translated-content/tree/main/files/ja/glossary/accessibility/index.md の「web」を「ウェブ」にするのがよさそう？ -->
+
+#### 例: 表記の修正
+
+例として、用語集の「アクセシビリティ」における「Web」という表現を修正します。表記の規約により、現在は「Web」はアルファベットではなくカタカナで書くよう定めているのですが、この記事では準拠できていなかったので、この機会に修正してみます。
 
 <!--
 // *NOTE*:
@@ -75,9 +91,11 @@
 
 - <https://github.com/mozilla-japan/translation/>
 
+<!-- TODO: 字幕と概要欄にURLを表示 -->
+
 こちらは、MDN 日本語版について、「このページが翻訳できていない」や、「このページの翻訳が間違っている」、あるいは「このページの翻訳が古い」などの問題を報告するリポジトリーです。
 
-今回取り組む問題も、早速報告してみましょう。今回は既に確認している、ということにしますが、実際に報告する際は、既に同じ Issue が報告されていないかのチェックも忘れないようよろしくお願いします。
+今回取り組む問題も、早速報告してみましょう。今回は既に確認している、ということにしますが、実際に報告する際は、既に同じ Issue が報告されていないかのチェックも忘れないようお願いします。
 
 ### 3. 実際に翻訳して、Pull requestを送る
 
@@ -85,21 +103,25 @@ Issue の報告ができたら、いよいよ作業開始です。mozilla-japan/
 
 - <https://github.com/mdn/translated-content>
 
-開けたら、GitHub 上で対象のファイルを開きましょう。このリポジトリーには、MDNを翻訳した文が集約されています。files/ja というディレクトリー以下に、日本語に翻訳したファイルが含まれています。今回は hoge にある index.md というファイルを編集するので、該当のファイルがある hoge/ まで辿ります。
+<!-- TODO: 字幕と概要欄にURLを表示 -->
 
-字幕で注意書き: 撮影時点でのGitHubの画面です。多かれ少なかれ現在のものと異なる可能性があります。
+開けたら、GitHub 上で対象のファイルを開きましょう。このリポジトリーには、MDNを翻訳した文が集約されています。files の ja というディレクトリー以下に、日本語に翻訳したファイルが含まれています。
 
-対象のファイル hoge がありましたね。続いて右上の鉛筆マークをクリックして、GitHub 上のエディターを起動します。
+今回は glossary の accessibility にある index.md というファイルを編集するので、該当のファイルがある glossary/accessibility まで辿ります。
 
-このリポジトリーを初めて編集する場合は、次のように、リポジトリーをフォークしなければならない旨を示す画面が表示されます。指示に従って「Fork this repository」という緑色のボタンを押しましょう。
+対象の index.md がありましたね。続いて右上の鉛筆マークをクリックして、GitHub 上のエディターを起動します。
+
+このリポジトリーを初めて編集する場合には、次のように、リポジトリーをフォークしなければならない旨を示す画面が表示されます。指示に従って「Fork this repository」という緑色のボタンを押しましょう。
 
 リポジトリーの Fork が終わると、そのまま GitHub 上のエディターが起動します。
 
-今回は「hoge」をカタカナでの表記に書き換えるのがゴールなので、そのように編集します。
+今回は「Web」をカタカナでの表記に書き換えるのがゴールなので、そのように編集します。
 
 編集できたら、右上の「Commit changes...」という緑色のボタンをクリックしてください。
 
-コミットメッセージを記入する画面が現れるので、コミットメッセージを書きましょう。コミットメッセージの形式について、特に明確な決まりはありませんが、慣習に従い、日本語の翻訳についての修正であることを分かりやすくするために、 `[ja]` と頭に付け加えておきます。更に、どのページをどう書き換えたか、それぞれ明確にします。今回は hoge における表記を変えたので「hoge 『hoge』を表記のルールに沿うよう『hoge』に変更」と書きます。更にコミットメッセージの詳細として、先ほど作成した Issue の URL と併せて「Fixes \<Issue の URL\>」と書いておくとよいでしょう。後で Pull request をマージした際、自動で対象の Issue をクローズすることができます。
+コミットメッセージを記入する画面が現れるので、コミットメッセージを書きましょう。コミットメッセージの形式について、特に明確な決まりはありませんが、どのページをどう書き換えたか、なるべく明確にしましょう。今回は Accessibility における表記を変えたので「Accessibilityにおける「Web」を表記のルールに沿うよう「ウェブ」に変更」と書きます。更にコミットメッセージの詳細として、先ほど作成した Issue の URL と併せて「Fixes \<Issue の URL\>」と書いておくとよいでしょう。後で Pull request をマージした際、自動で対象の Issue をクローズすることができます。
+
+<!-- TODO: メッセージがtypoしていたことを字幕で明記 -->
 
 コミットメッセージが書けたら、右下の「Propose changes」という緑色のボタンを押しましょう。
 
@@ -117,9 +139,9 @@ Pull request を作成すると、自動的にレビュアーが割り当てら�
 
 レビュアーから修正依頼をもらったら、対応が必要です。
 
-直す際は Pull request 画面の「Files changed」タブから修正したいファイルの名前の右側にある「・・・」と書かれた箇所をクリックし、「Edit file」をクリックすれば、先ほども使用した GitHub 上のエディターが起動します。後は編集して、先ほどと同様に「Commit changes...」という緑色のボタンを押しましょう。
+直す際は Pull request の画面の「Files changed」タブから修正したいファイルの名前の右側にある「・・・」と書かれた箇所をクリックし、「Edit file」をクリックすれば、先ほども使用した GitHub 上のエディターが起動します。後は編集して、先ほどと同様に「Commit changes...」という緑色のボタンを押しましょう。
 
-修正依頼に一通り対応したら、Pull request 画面の「Conversation」タブの右側、「Reviwers」の一覧からレビュアーの名前を探して右側にある🔄「Re-request review」ボタンをクリックしてください。
+修正依頼に一通り対応したら、Pull request の画面の「Conversation」タブの右側、「Reviwers」の一覧からレビュアーの名前を探して右側にある🔄「Re-request review」ボタンをクリックしてください。
 
 レビュアーに再度レビューをするよう通知が飛びます。
 
@@ -137,34 +159,44 @@ Pull request をマージしてもらうと、最長48時間以内に加えた�
 
 ### 用意するもの
 
-お手軽ルートでも利用した GitHub アカウントやウェブブラウザーに加えて、次のソフトウェアをあらかじめお使いのコンピューターにインストールしておいてください。
+改めて、必要なものを復習しておきましょう。
+
+お手軽ルートでも利用した GitHub のアカウントやウェブブラウザーに加えて、次のソフトウェアをあらかじめお使いのコンピューターにインストールしておいてください。
 
 - Node.js
 - Yarn
 - Git
 - 好きなテキストエディター
 
+バージョンは、比較的新しいものであれば問題ないでしょう。
+
 今回はこれらのインストール方法については特に解説しないので、各自で調べてください。
 
-上手くインストールできなかった場合は、概要欄に書いた Slack Workspace で相談するのがおすすめです。
-
-バージョンは、比較的新しいものであれば問題ないでしょう。
+上手くインストールできなかった場合は、概要欄に書いた Slack の Workspace で相談するのがおすすめです。
 
 ### 1. 修正する記事を選ぶ
 
 まずは「お手軽ルート」と同様に、翻訳する記事を選びます。
 
-特に翻訳する記事が決まっていない場合は、こちらからまだ翻訳されていない記事を探すと良いでしょう。
+特に翻訳する記事が決まっていない場合は、こちらからまだ翻訳されていない記事を探すと良いでしょう。このページは、MDN にある各記事について、日本語への翻訳状況などを自動でまとめています。
 
 - <https://mdn.lavoscore.org/>
 
-<!-- どの記事を選ぶかは未定 -->
+<!-- TODO: URLを字幕で明記 -->
 
-今回は「hoge」という、まだ翻訳されていない記事を新たに翻訳します。
+日本語に翻訳されていない記事のみをリストアップしたり、ページの種類などから正規表現で検索したりできるようになっています。特に初めて翻訳に取りかかる方は、「日本語版がないglossary一覧」から、翻訳されていない記事を探してみるのがいいでしょう。「glossary」とは MDNにおける用語集のことで、比較的短い記事が多いため、初めての翻訳に適した記事が多いからです。
+
+- <https://mdn.lavoscore.org/?regex_b=glossary&sort=size-asc&filter=not-ja>
+
+<!-- TODO: URLを字幕で明記 -->
+
+今回は「glossary」の「Resource Timing」という、まだ翻訳されていない記事を新たに翻訳します。
+
+- <https://developer.mozilla.org/en-US/docs/Glossary/Resource_Timing>
 
 ### 2. GitHub に Issue を作成する
 
-こちらも「お手軽ルート」と同様です。特筆することもないので説明は簡単に行います。
+GitHub に Issue を作成するのも「お手軽ルート」と同様です。特筆することもないので説明は簡単に行います。
 
 - <https://github.com/mozilla-japan/translation/>
 
@@ -178,7 +210,7 @@ Issue の作成ができたら、作業開始です。Issue を報告したリ�
 
 - <https://github.com/mdn/translated-content>
 
-「お手軽ルート」の手順に従うと、自動的にフォークができているはずなので、実際のところこの手順は必要ないかも知れません。既にフォークできていればこの手順は不要です。
+「お手軽ルート」の手順に従うと、自動的にフォークができているはずなので、実際のところこの手順は必要ないかも知れません。既にフォークできていれば、そのまま次に進みましょう。
 
 リポジトリーのフォークが完了したら、フォークしてできた translated-content リポジトリーを `git clone` します。
 
@@ -193,29 +225,26 @@ Issue の作成ができたら、作業開始です。Issue を報告したリ�
 > git remote add upstream https://github.com/mdn/translated-content.git
 ```
 
-ここではリモートリポジトリーの名前を `upstream` と付けていますが、もちろんお好きな名前で結構です。このようにリモートリポジトリーを設定しておけば、後で mdn/translated-content リポジトリーが更新された際、簡単に最新の状態から作業を始めることができます。詳細は次のステップで解説します。
+ここではリモートリポジトリーの名前を `upstream` と名付けていますが、もちろんお好きな名前で結構です。このようにリモートリポジトリーを設定しておけば、後で mdn/translated-content リポジトリーが更新された際、簡単に最新の状態から作業を始めることができます。詳細は次のステップで解説します。
 
 ### 3.2 作業用ブランチの作成
 
-過去に他の Git リポジトリーで作業した経験があれば、ここですぐに `git branch` コマンドや `git switch` コマンドを実行して、作業用ブランチを作りたくなるかも知れません。しかし、作業用ブランチを確実に最新のバージョンから作るために、次のようにあらかじめ `git fetch` しておくのをお勧めします。
+過去に他の Git のリポジトリーで作業した経験があれば、ここですぐに `git branch` コマンドや `git switch` コマンドを実行して、作業用ブランチを作りたくなるかも知れません。しかし、作業用ブランチを確実に最新のバージョンから作るために、次のようにあらかじめ `git fetch` しておくのをお勧めします。
 
 ```bash
 > git fetch upstream
-> git switch -c new-branch upstream/main
+> git switch -c issue-743 upstream/main
 ```
+
+<!-- TODO: 字幕でコマンドを出そう -->
 
 このように `git fetch upstream` と実行することによって、`upstream`、すなわちフォーク元である mdn/translated-content の最新の変更を取り込むことができます。その上で、新しいブランチの作成元として `upstream/main` を指定すれば、`git fetch` で更新した最新のバージョンからブランチを作ることができます。
 
-先ほどの例ではブランチの名前は `new-branch` としましたが、ブランチの名前に特に規約はないので好きな名前を付けてください。ここでは先ほど作った Issue の番号を含めて `issue-hoge` という名前にします。
-
-```bash
-> git fetch upstream
-> git switch -c issue-hoge upstream/main
-```
+なお、ブランチの名前に特に規約はないので好きな名前を付けてください。ここでは先ほど作った Issue の番号を含めて `issue-743` という名前にしました。
 
 ### 3.3 翻訳元のファイルをコピーして、最初のコミットを作る
 
-今回は、「hoge」というまだ一度も日本語に翻訳されていない記事を翻訳するので、翻訳元である英語版の記事をコピーします。英語版の記事は mdn/content というリポジトリーにあるので、そちらも `git clone` します。
+今回は、「Resource Timing」というまだ一度も日本語に翻訳されていない記事を翻訳するので、翻訳元である英語版の記事をコピーします。英語版の記事は mdn/content というリポジトリーにあるので、そちらも `git clone` します。
 
 ```bash
 > git clone https://github.com/mdn/content
@@ -228,77 +257,86 @@ NOTE:
 mdn/content 自体を修正する場合を考えればフォークした方がよいかとは思いますが、今回はあくまで翻訳の手順なので！
 -->
 
-`git clone` できたら、作成されたディレクトリーから翻訳する記事が書かれた Markdown ファイルを、対応する日本語版のディレクトリーにコピーします。
+`git clone` ができたら、作成されたディレクトリーから、翻訳する記事が書かれた Markdown ファイルを、対応する日本語版のディレクトリーにコピーします。
 
-今回翻訳する `hoge` の記事の場合、 `mdn/content` リポジトリーの、こちらのディレクトリーにあります。
+今回翻訳する「Resource Timing」の記事の場合、`mdn/content` リポジトリーの、こちらのディレクトリーにあります。
 
 <!--
-以下、仮に https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/import.meta/resolve を翻訳する場合のパスを用います。
+cd content/
+ls files/en-us/glossary/resource_timing/
+cat files/en-us/glossary/resource_timing/index.md
 -->
 
 ```
-files/en-us/web/javascript/reference/operators/import.meta/resolve/index.md
+files/en-us/glossary/resource_timing/index.md
 ```
 
 なので、ここまでで紹介したとおりにコマンドを実行していれば、次のコマンドでコピーできるはずです。
 
 ```bash
-> mkdir -p files/ja/web/javascript/reference/operators/import.meta/resolve/
-> cp content/files/en-us/web/javascript/reference/operators/import.meta/resolve/index.md files/ja/web/javascript/reference/operators/import.meta/resolve/
+> mkdir -p files/ja/glossary/resource_timing/
+> cp content/files/en-us/glossary/resource_timing/index.md files/ja/glossary/resource_timing/
 ```
 
 コピー先のディレクトリー、files/ja/ 以下が日本語版を保存するディレクトリーです。英語版がある content/files/en-us/ 以下から、同じパスのディレクトリーを作っています。
 
-うまく行かない場合は後ほど紹介する Slack の Workspace で相談してみてください！
+うまく行かない場合は概要欄に書いた Slack の Workspace で相談してみてください！
 
 英語版の記事をコピーできたら、早速日本語版の記事を開いて編集してみましょう... と言いたいところですがその前に、この時点でコピーした Markdown ファイルを `git add` してコミットしてください。
 
 ```bash
-> git add files/ja/web/javascript/reference/operators/import.meta/resolve/
-> git commit -m"hoge の en-us 版を ja にコピー"
+> git add files/ja/glossary/resource_timing/
+> git commit -m"Resource Timing の en-us 版を ja にコピー"
 ```
 
 このように予め翻訳前のファイルをコミットしておくことで、後でレビューする際に原文との比較がしやすくなります。
 
 ### 3.4 メタデータを編集して2番目のコミットを作る
 
-続いて、前の手順でコピーしたファイルのメタデータを編集します。お好きなエディターでコピーした hoge.md を開くと、先頭に次のような内容が書かれているでしょう。
+続いて、前の手順でコピーしたファイルのメタデータを編集します。お好きなエディターで、コピーした index.md を開くと、先頭に次のような内容が書かれているでしょう。
+
+<!--
+```vim
+e translated-content/files/ja/glossary/resource_timing/index.md
+```
+-->
 
 ```markdown
 ---
-title: import
-slug: Web/JavaScript/Reference/Statements/import
-page-type: javascript-statement
-browser-compat: javascript.statements.import
+title: Resource Timing
+slug: Glossary/Resource_Timing
+page-type: glossary-definition
 ---
 
 ... 以下略 ...
 ```
 
-※あくまで例です。ファイルによって項目は異ります。
+<!--
+字幕: ※あくまで例です。ファイルによって項目は異ります。
+-->
 
-こちらがメタデータです。タイトル（`title`）や記事の種類（`page-type`）など、記事の内容以外のことがハイフン三つ `---` に囲われた `YAML` 形式で書かれています。
+こちらがメタデータです。`title`や`page-type`など、記事の内容以外のことがハイフン三つ `---` に囲われた `YAML` 形式で書かれています。
 
 日本語版の記事では、このメタデータを次のように編集してください。
 
-(1) `title` と `slug` 以外の項目は削除します。
+(1) まず、`title` と `slug` 以外の項目は削除します。
 
 ```markdown
 ---
-title: import
-slug: Web/JavaScript/Reference/Statements/import
+title: Resource Timing
+slug: Glossary/Resource_Timing
 ---
 
 ... 以下略 ...
 ```
 
-(2) `l10n` という項目を追加して、その中に `sourceCommit` という項目を書きます。
+(2) それから、`l10n` という項目を追加して、その中に `sourceCommit` という項目を書きます。
 
 
 ```markdown
 ---
-title: import
-slug: Web/JavaScript/Reference/Statements/import
+title: Resource Timing
+slug: Glossary/Resource_Timing
 l10n:
   sourceCommit: 12345deadbeef
 ---
@@ -306,43 +344,47 @@ l10n:
 ... 以下略 ...
 ```
 
-`l10n`の最初の文字は小文字の l （エル）です。大文字の I と間違えないようご注意ください。`l10n` は localization の略なので覚えて奥手酔いでしょう。
+`l10n`の最初の文字は小文字の l （エル）です。大文字の I と間違えないようご注意ください。`l10n` は localization の略なので覚えておくとよいでしょう。
 
-`sourceCommit` に書く値は、翻訳元のファイル、つまり英語版が書かれたファイルが最後に更新されたときのコミットのIDです。例えば次のようなコマンドを使うと、簡単に調べられます。
+<!--
+字幕: ×I ○l
+-->
+
+`sourceCommit` に書く値は、翻訳元のファイル、つまり英語版のファイルが最後に更新されたときのコミットのIDです。例えば次のようなコマンドを使うと、簡単に調べられます。
 
 ```bash
 # 英語版のリポジトリーで実行します
 > cd content
 
-> git log -1 --format="format:%H"  files/en-us/web/javascript/reference/operators/import.meta/resolve/index.md
-270351317fdaa57ba9123a19aa281e9e40bb0baa
+> git log -1 --format="format:%H"  files/en-us/glossary/resource_timing/index.md
+d267a8cb862c20277f81bbc223221b36b0c613e6
 ```
 
 <!-- 実際に調べたコミットIDを sourceCommit に貼り付けるところまでスクリーンキャストで示す -->
 
 ```markdown
 ---
-title: import
-slug: Web/JavaScript/Reference/Statements/import
+title: Resource Timing
+slug: Glossary/Resource_Timing
 l10n:
-  sourceCommit: 270351317fdaa57ba9123a19aa281e9e40bb0baa
+  sourceCommit: d267a8cb862c20277f81bbc223221b36b0c613e6
 ---
 
 ... 以下略 ...
 ```
 
-以上のように `sourceCommit` を記載しておくことで、どの時点の英語版を翻訳したのかが明確になります。翻訳元のファイルが今後更新された場合に、古くなっていることが分かりやすくするための配慮です。
+以上のように `sourceCommit` を記載しておくことで、どの時点の英語版を翻訳したのかが明確になります。翻訳元のファイルが今後更新された場合に、古くなっていることを分かりやすくするための配慮です。
 
 ここまでできたら、再び `git commit` しておきましょう。
 
 ```bash
-> git add files/ja/web/javascript/reference/operators/import.meta/resolve/
-> git commit -m"hoge のメタデータを更新"
+> git add files/ja/glossary/resource_timing/
+> git commit -m"Resource Timing のメタデータを更新"
 ```
 
 ### 3.5 編集して段落ごとにコミットを作る
 
-いよいよ本文の翻訳です。後でレビュアーの方がレビューしやすいよう、段落など、短いまとまりを翻訳し終える度にコミットするのをお勧めします。そうすることによって、レビュアーが Pull request に含まれる各コミットを見るだけで、どの部分をどう翻訳したかを把握できます。
+いよいよ本文の翻訳です。後でレビュアーの方がレビューしやすいよう、段落など、短いまとまりを、翻訳し終える度にコミットするのをお勧めします。そうすることによって、レビュアーが Pull request に含まれる各コミットを見るだけで、どの部分をどう翻訳したかを把握できます。
 
 <!-- 実演するスクリーンキャストも -->
 
@@ -351,7 +393,7 @@ l10n:
 なお、翻訳の際は次の点にご注意ください。
 
 - 翻訳ソフトや対話型 AI などを利用して翻訳する場合、翻訳した文章を MDN の記事として公開することが、サービスの利用規約に違反しないようご注意ください
-- 他の MDN の記事へのリンクは、日本語版のものに書き換えてください
+- 記事の中にある、他の MDN の記事へのリンクは、日本語版のものに書き換えてください
     - 大抵の場合先頭の `/en-us/` を `/ja/` に置き換えるだけで良いです
     - 参照している翻訳記事が存在しない場合でも、英語版に自動でリダイレクトしてくれるので、参照先の有無は気にしなくて結構です
 - 日本語の表記について、細かく定めたルールがあるのでそれに従って記載してください
@@ -359,7 +401,7 @@ l10n:
 
 ### 3.6 編集中の内容をプレビューする
 
-さて、編集している間、自分が翻訳したページが MDN のウェブサイト上でどのように表示されるかすぐに確認できると便利でしょう。MDN では標準の Markdown にはない、固有の構文が使用されているため、それが正しく書けているか気になる、なんてケースもあるかも知れません。
+さて、編集している間、自分が翻訳したページが MDN のウェブサイト上でどのように表示されるか、すぐに確認できると便利だと思いませんか？MDN では標準の Markdown にない、固有の構文が使用されているため、それが正しく書けているか気になる、なんてケースもあるかも知れません。
 
 そんなときは Yari というアプリケーションを使いましょう。Yari は、MDN にあるドキュメントを配信するアプリケーションです。MDN の本番環境でも使用されているので、手元にインストールすれば、実際の MDN とほぼ同じ環境を再現することができます。
 
@@ -374,16 +416,16 @@ Yari は Node.js で書かれているので、利用する場合は Node.js を
 
 インストールには少し時間が掛かります。待ちましょう。もしうまく行かなかった場合は、概要欄に書いた Slack Workspace などでご相談ください。
 
-それから、同じく英語版があるリポジトリーに、`.env` という名前のファイルを作成してください。`.env` では次のように書くことで、Yari の実行時に `CONTENT_TRANSLATED_ROOT` という環境変数が設定されるようにします。
+それから、同じく英語版があるリポジトリーに、`.env` という名前のファイルを作成してください。`.env` では次のように書くことで、Yari の実行時に `CONTENT_TRANSLATED_ROOT` という環境変数が設定されるようになります。
 
 ```env
 # translated-content と content を同じディレクトリーに clone した場合
-CONTENT_TRANSLATED_ROOT=../translated-content/files
+CONTENT_TRANSLATED_ROOT=../files
 ```
 
 環境変数 `CONTENT_TRANSLATED_ROOT` は、翻訳済みの記事を含むディレクトリーのパスです。プレビューの際、日本語版をはじめ英語版以外の記事を表示する際使用します。
 
-例えば `content` と `translated-content` を同じディレクトリーに clone している場合、例の通り設定してください。
+例えば `content` を `translated-content` のディレクトリーの中に git clone している場合、例の通り設定しましょう。
 
 ここまでできたら、`yarn start` で Yari を起動してみましょう。
 
@@ -393,9 +435,11 @@ CONTENT_TRANSLATED_ROOT=../translated-content/files
 
 起動できたら、ブラウザーで http://localhost:5042 という URL にアクセスしてみてください。Yari が起動できていれば、画面のようなページが表示されるはずです。
 
+<!-- 字幕: http://localhost:5042 -->
+
 <!-- スクリーンキャスト -->
 
-うまく行かない場合は、概要欄に書いた Slack Workspace などでご相談ください。
+再三の繰り返しになりますが、うまく行かない場合は、概要欄に書いた Slack Workspace でご相談ください。
 
 右上の検索ボックスなどを利用して、プレビューしたいページを探してみてください。基本的な使い方は、MDN のウェブサイトと変わりません。
 
@@ -415,19 +459,20 @@ git push -u
 
 # まとめ・関連するウェブページ
 
-- 本動画の構成を決めるに当たって参考にしたページ
-    - <https://mozilla-japan.github.io/mdn-translation-guide/>
-    - 今回は触れていない手順や注意事項も書かれているのでご覧ください
-- Issue を送るリポジトリー:
-    - <https://github.com/mozilla-japan/translation/>
-- Pull request を送るリポジトリー:
-    - <https://github.com/mdn/translated-content>
-- 翻訳する原文があるリポジトリー:
-    - <https://github.com/mdn/content>
-- 翻訳する記事を探すのに便利なページ
-    - <https://mdn.lavoscore.org/>
+MDN の翻訳の流れについては、以上です。最後にまとめとして、ポイントとなるウェブページを再掲したり、関連するウェブページを付け加えたりすることで、締めくくりたいと思います。いずれも概要欄に URL を記載しておりますので、そこからご覧ください。
 
-- 相談は [Japanese Mozilla community group の Slack の #translation チャンネルで！](https://join.slack.com/t/mozillajp/shared_invite/enQtMjI2NDMwODUwNzY5LTIxZTg0YzJhMjFiYjc3NDIzNzQ3NTgyZmI1ZGQ2YWNhZmRlMzdlZWVlYTc3OGJiOGYzZTE2NThjYzFhMGMwYzQ) で
+第一に、MDN の翻訳の際扱うリポジトリーは全部で 3 つあります。Issue を作成するリポジトリーの mozilla-japan/translation、Pull request を送るリポジトリーの mdn/translated-content、それから翻訳する原文がある mdn/content です。
 
-- [Editorial Guideline · mozilla-japan/translation Wiki](https://github.com/mozilla-japan/translation/wiki/Editorial-Guideline)
-- [Mozilla L10n-ja 日本語の文体 - Google スプレッドシート](https://docs.google.com/spreadsheets/d/1y-hC-xMXawCgcYZwJDnvuSlAOTgMRLLyqXurpYkJbYE/edit#gid=0)
+翻訳する記事を探すのに便利なウェブサイトとして、「MDN翻訳ステータス一覧表」も紹介いたしました。
+
+他にも、困ったときに相談できる Slack Workspace についても、折に触れて紹介しました。
+
+補足情報として、本動画の構成を決める際に参考にしたページや、日本語の表記についてのルールをまとめたページを紹介しておきます。今回は触れていない手順や注意事項も書かれているので、ぜひご一読ください。
+
+以上、最後までご視聴ありがとうございました。この動画で一人でも多くの方が MDN の翻訳にご参加頂ければ幸いです。
+
+# クレジット
+
+- 製作・著作: Mozilla Japanese Community
+- BGM:
+- Emoji: Fluent Emoji (c) Microsoft Corporation.
