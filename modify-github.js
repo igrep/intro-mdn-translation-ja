@@ -33,6 +33,13 @@
     if (thisBranchIs !== null) {
       thisBranchIs.parentElement.removeChild(thisBranchIs);
     }
+
+    const targetBranches = document.querySelectorAll("a[title='igrep/translated-content:main'] > span");
+    for (const targetBranch of targetBranches) {
+      if (targetBranch.innerText === "igrep") {
+        targetBranch.innerText = "mdn";
+      }
+    }
   }
   exec();
 
